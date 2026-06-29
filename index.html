@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="ja"><head>
+<!-- Standalone copy generated from http://localhost:3456/demo.html. External CDN/font dependencies removed. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TEAM MTO">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0d0d0f">
+<title>TEAM MTO</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    background: #f0efe9;
+    padding-bottom: 80px;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+  .fade-in { animation: fadeIn .12s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(2px)} to{opacity:1;transform:translateY(0)} }
+  .slide-up { animation: slideUp .18s cubic-bezier(.16,1,.3,1); }
+  @keyframes slideUp { from{opacity:0;transform:translateY(10px) scale(.98)} to{opacity:1;transform:translateY(0) scale(1)} }
+  .toast-anim { animation: tIn .18s ease, tOut .25s ease 2.1s forwards; }
+  @keyframes tIn  { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes tOut { from{opacity:1} to{opacity:0} }
+  .pulse-anim { animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  /* タスクカードのホバー */
+  .task-card { transition: box-shadow .12s ease, border-color .12s ease; }
+  .task-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,.08); border-color: #d9d8d2 !important; }
+  /* チェックボックス */
+  .check-btn { transition: background .1s, border-color .1s; }
+  /* iPhone safe areas */
+  header { padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right)); }
+  .inbox-bar { padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right)); padding-bottom: max(.75rem, env(safe-area-inset-bottom)); }
+  /* セクションラベル */
+  .sec-label { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  /* スクロールバー */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #d1d0cb; border-radius: 2px; }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.relative{position:relative}.sticky{position:sticky}.top-0{top:0px}.z-20{z-index:20}.mx-auto{margin-left:auto;margin-right:auto}.mb-5{margin-bottom:1.25rem}.flex{display:flex}.hidden{display:none}.min-h-screen{min-height:100vh}.max-w-5xl{max-width:64rem}.flex-shrink-0{flex-shrink:0}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-3{gap:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}@media (min-width: 640px){.sm\:block{display:block}.sm\:px-5{padding-left:1.25rem;padding-right:1.25rem}}</style></head>
+<body class="min-h-screen">
+
+<!-- ヘッダー -->
+<header style="background:#0d0d0f;" class="px-5 py-3.5 flex items-center justify-between sticky top-0 z-20">
+  <div class="flex items-center gap-3">
+    <div style="width:28px;height:28px;background:linear-gradient(135deg,#4f8ef7,#7c5fe6);border-radius:7px;" class="flex items-center justify-center flex-shrink-0">
+      <span style="color:#fff;font-size:13px;font-weight:700;letter-spacing:-.5px;">T</span>
+    </div>
+    <span style="color:#fff;font-size:15px;font-weight:600;letter-spacing:-.3px;">TEAM MTO</span>
+  </div>
+  <div class="flex items-center gap-3">
+    <span id="today-label" style="color:#666;font-size:11px;" class="hidden sm:block">6月29日（月）</span>
+    <button onclick="setTab('cases')" id="notif-bell" class="relative" style="color:#666;padding:4px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+      <span id="notif-badge" style="position:absolute;top:-2px;right:-2px;background:#ef4444;color:#fff;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px;">24</span>
+    </button>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 sm:px-5 py-5">
+  <!-- タブ -->
+  <div style="display:inline-flex;background:#e8e7e1;border-radius:10px;padding:3px;gap:2px;" class="mb-5">
+    <button onclick="setTab('tasks')" id="tab-tasks" style="padding:6px 16px;border-radius:7px;font-size:13px;font-weight:500;background:#fff;color:#1a1a1a;box-shadow:0 1px 3px rgba(0,0,0,.1);border:none;cursor:pointer;position:relative;transition:all .1s;">
+      タスク
+    </button>
+    <button onclick="setTab('cases')" id="tab-cases" style="padding:6px 16px;border-radius:7px;font-size:13px;font-weight:500;background:transparent;color:#888;border:none;cursor:pointer;position:relative;transition:all .1s;">
+      案件
+      <span id="tab-badge" style="display: flex; position: absolute; top: -4px; right: -4px; background: rgb(239, 68, 68); color: rgb(255, 255, 255); font-size: 9px; font-weight: 700; min-width: 17px; height: 17px; border-radius: 9px; align-items: center; justify-content: center; padding: 0px 3px;">24</span>
+    </button>
+  </div>
+  <div id="content">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+      
+    <div style="background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e8e7e1;min-width:0;box-shadow:0 2px 16px rgba(0,0,0,.05);border-top:3px solid #4f8ef7;">
+      <!-- パネルヘッダー -->
+      <div style="padding:12px 14px;border-bottom:1px solid #f0efe9;display:flex;align-items:center;justify-content:space-between;background:#fafaf9;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:30px;height:30px;border-radius:9px;background:#4f8ef7;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;">M</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#1a1a1a;">MTO</div>
+            <div style="font-size:11px;color:#aaa;margin-top:1px;">
+              ルーティーン未設定
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- コンテンツ -->
+      <div style="padding:14px;">
+        
+    <div style="background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid #e8e7e1;" class="fade-in">
+      <div style="padding:14px 16px;border-bottom:1px solid #f0efe9;display:flex;align-items:center;gap:10px;">
+        <div style="font-size:20px;">🌅</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a1a1a;">おはようございます</div>
+          <div style="font-size:11px;color:#aaa;margin-top:1px;">今日のルーティーンを選択（今日の対象: 8件）</div>
+        </div>
+      </div>
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:14px;max-height:280px;overflow-y:auto;">
+        <div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#059669;display:inline-block;flex-shrink:0;"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#059669;">毎日</span>
+              
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#059669;flex-shrink:0;cursor:pointer;" onchange="toggleSel(1)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">アポカレンダーチェック（翌日分の確認）</span>
+                  <span style="font-size:10px;font-weight:600;color:#059669;flex-shrink:0;">今日</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#059669;flex-shrink:0;cursor:pointer;" onchange="toggleSel(2)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">案件進捗キャンバスの更新</span>
+                  <span style="font-size:10px;font-weight:600;color:#059669;flex-shrink:0;">今日</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#059669;flex-shrink:0;cursor:pointer;" onchange="toggleSel(3)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">受信メール・Slack確認と返信</span>
+                  <span style="font-size:10px;font-weight:600;color:#059669;flex-shrink:0;">今日</span>
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#0d9488;display:inline-block;flex-shrink:0;"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#0d9488;">平日毎日</span>
+              
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#0d9488;flex-shrink:0;cursor:pointer;" onchange="toggleSel(4)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">見積依頼チャンネルの確認・対応状況チェック</span>
+                  <span style="font-size:10px;font-weight:600;color:#0d9488;flex-shrink:0;">今日</span>
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#2563eb;display:inline-block;flex-shrink:0;"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#2563eb;">毎週月曜</span>
+              
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#2563eb;flex-shrink:0;cursor:pointer;" onchange="toggleSel(5)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">週次タスクレビュー準備・会議アジェンダ作成</span>
+                  <span style="font-size:10px;font-weight:600;color:#2563eb;flex-shrink:0;">今日</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#2563eb;flex-shrink:0;cursor:pointer;" onchange="toggleSel(6)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">週次タスクレビュー（れんたと）</span>
+                  <span style="font-size:10px;font-weight:600;color:#2563eb;flex-shrink:0;">今日</span>
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#d97706;display:inline-block;flex-shrink:0;opacity:.35"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#bbb;">月初（1〜5日）</span>
+              <span style="font-size:10px;color:#ccc;">— 今日は対象外</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:.45;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#d97706;flex-shrink:0;cursor:pointer;" onchange="toggleSel(7)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">給与計算・振込確認</span>
+                  
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:.45;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#d97706;flex-shrink:0;cursor:pointer;" onchange="toggleSel(8)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">社会保険料の納付確認</span>
+                  
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#ea580c;display:inline-block;flex-shrink:0;"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#ea580c;">月末（25日〜）</span>
+              
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#ea580c;flex-shrink:0;cursor:pointer;" onchange="toggleSel(9)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">6月経営会議の準備・資料作成</span>
+                  <span style="font-size:10px;font-weight:600;color:#ea580c;flex-shrink:0;">今日</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#ea580c;flex-shrink:0;cursor:pointer;" onchange="toggleSel(10)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">翌月の資金繰り確認</span>
+                  <span style="font-size:10px;font-weight:600;color:#ea580c;flex-shrink:0;">今日</span>
+                </label>
+            </div>
+          </div>
+      </div>
+      <div style="padding:10px 14px;background:#fafaf9;border-top:1px solid #f0efe9;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+        <span style="font-size:11px;color:#aaa;">0件 選択中</span>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+          <button onclick="selectToday('MTO')" style="padding:5px 10px;font-size:11px;color:#666;background:#fff;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">今日の対象</button>
+          <button onclick="selectAll('MTO')" style="padding:5px 10px;font-size:11px;color:#666;background:#fff;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">全選択</button>
+          <button onclick="skipRoutines('MTO')" style="padding:5px 10px;font-size:11px;color:#999;background:transparent;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">スキップ</button>
+          <div style="width:1px;height:20px;background:#e8e7e1;"></div>
+          <button onclick="confirmRoutines('MTO')" style="padding:6px 14px;font-size:12px;font-weight:600;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:opacity .1s;
+              background:#e8e7e1;color:#bbb;cursor:not-allowed;">
+            追加 →
+          </button>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+      
+    <div style="background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e8e7e1;min-width:0;box-shadow:0 2px 16px rgba(0,0,0,.05);border-top:3px solid #10b981;">
+      <!-- パネルヘッダー -->
+      <div style="padding:12px 14px;border-bottom:1px solid #f0efe9;display:flex;align-items:center;justify-content:space-between;background:#fafaf9;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:30px;height:30px;border-radius:9px;background:#10b981;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;">れ</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#1a1a1a;">れんた</div>
+            <div style="font-size:11px;color:#aaa;margin-top:1px;">
+              ルーティーン未設定
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- コンテンツ -->
+      <div style="padding:14px;">
+        
+    <div style="background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid #e8e7e1;" class="fade-in">
+      <div style="padding:14px 16px;border-bottom:1px solid #f0efe9;display:flex;align-items:center;gap:10px;">
+        <div style="font-size:20px;">🌅</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a1a1a;">おはようございます</div>
+          <div style="font-size:11px;color:#aaa;margin-top:1px;">今日のルーティーンを選択（今日の対象: 8件）</div>
+        </div>
+      </div>
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:14px;max-height:280px;overflow-y:auto;">
+        <div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#059669;display:inline-block;flex-shrink:0;"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#059669;">毎日</span>
+              
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#059669;flex-shrink:0;cursor:pointer;" onchange="toggleSel(11)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">受信メール・Slack確認と返信</span>
+                  <span style="font-size:10px;font-weight:600;color:#059669;flex-shrink:0;">今日</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#059669;flex-shrink:0;cursor:pointer;" onchange="toggleSel(12)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">前日の案件スレッドの投稿状況チェック</span>
+                  <span style="font-size:10px;font-weight:600;color:#059669;flex-shrink:0;">今日</span>
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#0d9488;display:inline-block;flex-shrink:0;"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#0d9488;">平日毎日</span>
+              
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#0d9488;flex-shrink:0;cursor:pointer;" onchange="toggleSel(13)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">案件進捗の報告（MTOへ）</span>
+                  <span style="font-size:10px;font-weight:600;color:#0d9488;flex-shrink:0;">今日</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#0d9488;flex-shrink:0;cursor:pointer;" onchange="toggleSel(14)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">#02見積依頼チャンネルのリアクション確認</span>
+                  <span style="font-size:10px;font-weight:600;color:#0d9488;flex-shrink:0;">今日</span>
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#2563eb;display:inline-block;flex-shrink:0;"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#2563eb;">毎週月曜</span>
+              
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#2563eb;flex-shrink:0;cursor:pointer;" onchange="toggleSel(15)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">買掛請求書の確認</span>
+                  <span style="font-size:10px;font-weight:600;color:#2563eb;flex-shrink:0;">今日</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#2563eb;flex-shrink:0;cursor:pointer;" onchange="toggleSel(16)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">週次タスクレビュー（MTOと）</span>
+                  <span style="font-size:10px;font-weight:600;color:#2563eb;flex-shrink:0;">今日</span>
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#d97706;display:inline-block;flex-shrink:0;opacity:.35"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#bbb;">月初（1〜5日）</span>
+              <span style="font-size:10px;color:#ccc;">— 今日は対象外</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:.45;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#d97706;flex-shrink:0;cursor:pointer;" onchange="toggleSel(17)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">補助金申請状況の確認（佐野さんに連絡）</span>
+                  
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:.45;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#d97706;flex-shrink:0;cursor:pointer;" onchange="toggleSel(18)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">freee 前月経費の最終確認・締め</span>
+                  
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#ea580c;display:inline-block;flex-shrink:0;"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#ea580c;">月末（25日〜）</span>
+              
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#ea580c;flex-shrink:0;cursor:pointer;" onchange="toggleSel(19)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">請求書の作成・送付確認</span>
+                  <span style="font-size:10px;font-weight:600;color:#ea580c;flex-shrink:0;">今日</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:1;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#ea580c;flex-shrink:0;cursor:pointer;" onchange="toggleSel(20)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">freee 経費入力まとめ</span>
+                  <span style="font-size:10px;font-weight:600;color:#ea580c;flex-shrink:0;">今日</span>
+                </label>
+            </div>
+          </div><div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#db2777;display:inline-block;flex-shrink:0;opacity:.35"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#bbb;">特定日</span>
+              <span style="font-size:10px;color:#ccc;">— 今日は対象外</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid #f0efe9;background:transparent;cursor:pointer;transition:all .1s;opacity:.45;">
+                  <input type="checkbox" style="width:15px;height:15px;accent-color:#db2777;flex-shrink:0;cursor:pointer;" onchange="toggleSel(21)">
+                  <span style="font-size:12px;color:#555;font-weight:400;flex:1;line-height:1.4;">保険料の支払い確認</span>
+                  
+                </label>
+            </div>
+          </div>
+      </div>
+      <div style="padding:10px 14px;background:#fafaf9;border-top:1px solid #f0efe9;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+        <span style="font-size:11px;color:#aaa;">0件 選択中</span>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+          <button onclick="selectToday('れんた')" style="padding:5px 10px;font-size:11px;color:#666;background:#fff;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">今日の対象</button>
+          <button onclick="selectAll('れんた')" style="padding:5px 10px;font-size:11px;color:#666;background:#fff;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">全選択</button>
+          <button onclick="skipRoutines('れんた')" style="padding:5px 10px;font-size:11px;color:#999;background:transparent;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">スキップ</button>
+          <div style="width:1px;height:20px;background:#e8e7e1;"></div>
+          <button onclick="confirmRoutines('れんた')" style="padding:6px 14px;font-size:12px;font-weight:600;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:opacity .1s;
+              background:#e8e7e1;color:#bbb;cursor:not-allowed;">
+            追加 →
+          </button>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+    </div></div>
+</main>
+
+<!-- ぶち込みバー -->
+<div class="inbox-bar" style="position:fixed;bottom:0;left:0;right:0;background:rgba(13,13,15,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,.08);padding:10px 20px;z-index:30;">
+  <div style="max-width:80rem;margin:0 auto;display:flex;align-items:center;gap:10px;">
+    <span style="font-size:16px;flex-shrink:0;">📦</span>
+    <!-- 担当者トグル -->
+    <div style="display:flex;gap:2px;background:rgba(255,255,255,.1);border-radius:8px;padding:2px;flex-shrink:0;">
+      <button id="ib-MTO" onclick="inboxPerson='MTO';   updateInboxToggle()" style="padding:4px 12px;border-radius:6px;font-size:11px;font-weight:600;background:#fff;color:#1a1a1a;border:none;cursor:pointer;">MTO</button>
+      <button id="ib-れんた" onclick="inboxPerson='れんた';updateInboxToggle()" style="padding:4px 12px;border-radius:6px;font-size:11px;font-weight:600;background:transparent;color:rgba(255,255,255,.5);border:none;cursor:pointer;">れんた</button>
+    </div>
+    <input id="inbox-input" placeholder="ぶち込む… 入力してEnter" style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:8px 16px;font-size:13px;color:#fff;outline:none;font-family:inherit;" onfocus="this.style.borderColor='rgba(255,255,255,.25)'" onblur="this.style.borderColor='rgba(255,255,255,.12)'" onkeydown="if(event.key==='Enter')quickAdd()">
+  </div>
+</div>
+
+<!-- タスク詳細モーダル -->
+<div id="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:50;align-items:flex-start;justify-content:center;padding-top:3rem;padding-left:1rem;padding-right:1rem;" onclick="if(event.target===this)closeModal()">
+  <div style="background:#fff;border-radius:16px;width:100%;max-width:520px;box-shadow:0 20px 60px rgba(0,0,0,.2);" class="slide-up" onclick="event.stopPropagation()">
+    <div style="padding:20px;border-bottom:1px solid #f0f0ee;">
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="flex:1;min-width:0;">
+          <div id="modal-badge" style="font-size:11px;margin-bottom:6px;"></div>
+          <div id="modal-title-view" style="font-size:15px;font-weight:600;color:#1a1a1a;line-height:1.4;cursor:text;border-radius:6px;padding:2px 4px;margin:-2px -4px;" onmouseenter="this.style.background='#f7f6f3'" onmouseleave="this.style.background=''" onclick="startEditTitle()"></div>
+          <input id="modal-title-edit" style="display:none;font-size:15px;font-weight:600;color:#1a1a1a;width:100%;border:none;border-bottom:2px solid #4f8ef7;outline:none;padding:2px 0;background:transparent;font-family:inherit;" onblur="saveEditTitle()" onkeydown="if(event.key==='Enter')saveEditTitle();if(event.key==='Escape')cancelEditTitle()">
+          <div id="modal-meta" style="font-size:11px;color:#aaa;margin-top:4px;"></div>
+        </div>
+        <button onclick="closeModal()" style="width:32px;height:32px;border-radius:8px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:#bbb;flex-shrink:0;" onmouseenter="this.style.background='#f0efe9';this.style.color='#555'" onmouseleave="this.style.background='transparent';this.style.color='#bbb'">×</button>
+      </div>
+      <div id="modal-type-row" style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;"></div>
+    </div>
+    <div style="padding:20px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#bbb;margin-bottom:12px;">スレッド</div>
+      <div id="modal-thread" style="display:flex;flex-direction:column;gap:12px;max-height:200px;overflow-y:auto;padding-right:4px;"></div>
+      <div style="margin-top:16px;display:flex;gap:8px;">
+        <input id="modal-input" placeholder="コメントを追加… (Enter で送信)" style="flex:1;border:1.5px solid #e8e7e1;border-radius:10px;padding:8px 12px;font-size:13px;outline:none;font-family:inherit;" onfocus="this.style.borderColor='#4f8ef7'" onblur="this.style.borderColor='#e8e7e1'" onkeydown="if(event.key==='Enter')addComment();if(event.key==='Escape')closeModal()">
+        <button onclick="addComment()" style="padding:8px 16px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;" onmouseenter="this.style.background='#333'" onmouseleave="this.style.background='#1a1a1a'">送信</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 削除確認ダイアログ -->
+<div id="delete-dialog" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;align-items:center;justify-content:center;padding:1rem;" onclick="if(event.target===this)cancelDelete()">
+  <div style="background:#fff;border-radius:16px;padding:24px;max-width:360px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.2);" class="slide-up" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+      <div style="width:40px;height:40px;background:#fef2f2;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🗑️</div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:#1a1a1a;">削除しますか？</div>
+        <div id="delete-target-name" style="font-size:11px;color:#888;margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;"></div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:#aaa;margin-bottom:16px;">この操作は取り消せません。</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end;">
+      <button onclick="cancelDelete()" style="padding:8px 16px;font-size:13px;color:#555;background:#f0efe9;border:none;border-radius:9px;cursor:pointer;font-weight:500;font-family:inherit;" onmouseenter="this.style.background='#e8e7e1'" onmouseleave="this.style.background='#f0efe9'">キャンセル</button>
+      <button onclick="confirmDelete()" style="padding:8px 16px;font-size:13px;color:#fff;background:#ef4444;border:none;border-radius:9px;cursor:pointer;font-weight:500;font-family:inherit;" onmouseenter="this.style.background='#dc2626'" onmouseleave="this.style.background='#ef4444'">削除する</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast-container" style="position:fixed;bottom:88px;left:50%;transform:translateX(-50%);z-index:50;display:flex;flex-direction:column;gap:8px;pointer-events:none;align-items:center;"></div>
+
+<script>
+// ===== 日付 =====
+const D = new Date()
+const DOW  = D.getDay(), DATE = D.getDate()
+const IS_WEEKDAY    = DOW>=1&&DOW<=5
+const IS_MONDAY     = DOW===1
+const IS_MONTH_START= DATE<=5
+const IS_MONTH_END  = DATE>=25
+const DAYS_JP = ['日','月','火','水','木','金','土']
+
+const SCHED_CFG = {
+  daily:       {label:'毎日',          cls:'bg-green-100  text-green-700',  icon:'🟢'},
+  weekday:     {label:'平日毎日',      cls:'bg-teal-100   text-teal-700',   icon:'📅'},
+  monday:      {label:'毎週月曜',      cls:'bg-blue-100   text-blue-700',   icon:'📋'},
+  month_start: {label:'月初（1〜5日）',cls:'bg-yellow-100 text-yellow-700', icon:'🌱'},
+  month_end:   {label:'月末（25日〜）',cls:'bg-orange-100 text-orange-700', icon:'📆'},
+  specific:    {label:'特定日',        cls:'bg-pink-100   text-pink-700',   icon:'📌'},
+}
+const TYPE_CFG = {
+  today:      {label:'今日のタスク', color:'#1d4ed8', bg:'#eff6ff', bd:'#bfdbfe', dot:'#3b82f6'},  // Blue
+  inprogress: {label:'進行中',       color:'#c2410c', bg:'#fff7ed', bd:'#fed7aa', dot:'#f97316'},  // Orange
+  waiting:    {label:'確認待ち',     color:'#6d28d9', bg:'#f5f3ff', bd:'#ddd6fe', dot:'#7c3aed'},  // Purple
+  inbox:      {label:'ぶち込み部屋', color:'#0f766e', bg:'#f0fdfa', bd:'#99f6e4', dot:'#14b8a6'},  // Teal
+}
+
+// ===== ルーティーンデータ =====
+let routines = [
+  {id:1,  assignee:'MTO',   schedule:'daily',       title:'アポカレンダーチェック（翌日分の確認）',     sel:false, done:false, comments:[]},
+  {id:2,  assignee:'MTO',   schedule:'daily',       title:'案件進捗キャンバスの更新',                   sel:false, done:false, comments:[]},
+  {id:3,  assignee:'MTO',   schedule:'daily',       title:'受信メール・Slack確認と返信',                sel:false, done:false, comments:[]},
+  {id:4,  assignee:'MTO',   schedule:'weekday',     title:'見積依頼チャンネルの確認・対応状況チェック', sel:false, done:false, comments:[]},
+  {id:5,  assignee:'MTO',   schedule:'monday',      title:'週次タスクレビュー準備・会議アジェンダ作成', sel:false, done:false, comments:[]},
+  {id:6,  assignee:'MTO',   schedule:'monday',      title:'週次タスクレビュー（れんたと）',             sel:false, done:false, comments:[]},
+  {id:7,  assignee:'MTO',   schedule:'month_start', title:'給与計算・振込確認',                         sel:false, done:false, comments:[]},
+  {id:8,  assignee:'MTO',   schedule:'month_start', title:'社会保険料の納付確認',                       sel:false, done:false, comments:[]},
+  {id:9,  assignee:'MTO',   schedule:'month_end',   title:'6月経営会議の準備・資料作成',                sel:false, done:false, comments:[]},
+  {id:10, assignee:'MTO',   schedule:'month_end',   title:'翌月の資金繰り確認',                         sel:false, done:false, comments:[]},
+  {id:11, assignee:'れんた', schedule:'daily',       title:'受信メール・Slack確認と返信',                sel:false, done:false, comments:[]},
+  {id:12, assignee:'れんた', schedule:'daily',       title:'前日の案件スレッドの投稿状況チェック',       sel:false, done:false, comments:[]},
+  {id:13, assignee:'れんた', schedule:'weekday',     title:'案件進捗の報告（MTOへ）',                    sel:false, done:false, comments:[]},
+  {id:14, assignee:'れんた', schedule:'weekday',     title:'#02見積依頼チャンネルのリアクション確認',    sel:false, done:false, comments:[]},
+  {id:15, assignee:'れんた', schedule:'monday',      title:'買掛請求書の確認',                           sel:false, done:false, comments:[]},
+  {id:16, assignee:'れんた', schedule:'monday',      title:'週次タスクレビュー（MTOと）',                sel:false, done:false, comments:[]},
+  {id:17, assignee:'れんた', schedule:'month_start', title:'補助金申請状況の確認（佐野さんに連絡）',     sel:false, done:false, comments:[]},
+  {id:18, assignee:'れんた', schedule:'month_start', title:'freee 前月経費の最終確認・締め',             sel:false, done:false, comments:[]},
+  {id:19, assignee:'れんた', schedule:'month_end',   title:'請求書の作成・送付確認',                     sel:false, done:false, comments:[]},
+  {id:20, assignee:'れんた', schedule:'month_end',   title:'freee 経費入力まとめ',                       sel:false, done:false, comments:[]},
+  {id:21, assignee:'れんた', schedule:'specific',    title:'保険料の支払い確認', specific_days:'25',     sel:false, done:false, comments:[]},
+]
+
+let tasks = [
+  {id:101, assignee:'MTO', type:'today',     title:'本木北コンテナ工事 見積り作成', done:false, comments:[]},
+  {id:102, assignee:'MTO', type:'today',     title:'白木工業向け単価表作成', done:false, comments:[]},
+  {id:103, assignee:'MTO', type:'today',     title:'銀行用資料 受注明細作成', done:false, comments:[]},
+  {id:104, assignee:'MTO', type:'today',     title:'アポイント同行ルールの確立', done:false, comments:[]},
+  {id:105, assignee:'MTO', type:'inprogress',title:'Slackの作りこみ・自動化ルール整備', done:false, comments:[
+    {author:'MTO', text:'ルーティーンワークの肉付けを含めて整備中。今週中に完成させる。', ts:'6/22'}
+  ]},
+  {id:106, assignee:'MTO', type:'inprogress',title:'会社のHP作成（ブラニュー）', done:false, comments:[
+    {author:'れんた', text:'写真素材はDropboxに入れておきました！', ts:'6/20'},
+    {author:'MTO',   text:'ありがとう。来週までに初稿を上げます。', ts:'6/20'}
+  ]},
+  {id:107, assignee:'MTO', type:'inprogress',title:'FRAME IN システム構築', done:false, comments:[]},
+  {id:108, assignee:'MTO', type:'inprogress',title:'天才漫才師 執筆進める', done:false, comments:[]},
+  {id:109, assignee:'MTO', type:'waiting',   title:'直近現場の原価管理→利率確認→大和に報告', done:false, comments:[
+    {author:'MTO',   text:'5月分の工事費のExcelを確認済み。大和の担当者連絡先を確認してから送付予定。', ts:'6/21'},
+    {author:'れんた', text:'大和の担当は田中さんですよ。連絡先送ります。', ts:'6/21'},
+    {author:'MTO',   text:'ありがとう！連絡してみます。', ts:'6/21'}
+  ]},
+  {id:110, assignee:'MTO', type:'inbox',     title:'グーグルドライブ整理', done:false, comments:[]},
+  {id:111, assignee:'MTO', type:'inbox',     title:'施工管理２級 受験者を決める', done:false, comments:[]},
+  {id:112, assignee:'MTO', type:'inbox',     title:'電話：森崎さん、花屋さん、内藤さん', done:false, comments:[]},
+  {id:113, assignee:'MTO', type:'inbox',     title:'前税理士 白田さんとの問題の件', done:false, comments:[]},
+  {id:201, assignee:'れんた', type:'today',     title:'買掛請求書の確認方法をまとめる', done:false, comments:[]},
+  {id:202, assignee:'れんた', type:'today',     title:'サクミル 収支管理（6/22分）', done:false, comments:[]},
+  {id:203, assignee:'れんた', type:'today',     title:'freeeの作りこみ→マイナンバー・免許・雇用保険番号など従業員名簿', done:false, comments:[
+    {author:'れんた', text:'マイナンバーは8割完了。雇用保険番号が2名分未入力。', ts:'6/24'}
+  ]},
+  {id:204, assignee:'れんた', type:'inprogress',title:'新規営業の顧客整理・管理', done:false, comments:[]},
+  {id:205, assignee:'れんた', type:'inprogress',title:'補助金申請 キャリアアップ・持続化補助金', done:false, comments:[
+    {author:'れんた', text:'書類の8割完成。添付資料を揃え中。佐野さんに確認依頼済み。', ts:'6/23'},
+    {author:'MTO',   text:'申請期限いつだっけ？間に合いそう？', ts:'6/23'},
+    {author:'れんた', text:'7月中旬提出予定です！間に合います。', ts:'6/23'}
+  ]},
+  {id:206, assignee:'れんた', type:'inprogress',title:'協力業者管理リスト作成（価格含む）', done:false, comments:[]},
+  {id:207, assignee:'れんた', type:'waiting',   title:'税金のチェック：特別徴収・労働保険の支払い（5/28佐野さん来社時確認）', done:false, comments:[
+    {author:'れんた', text:'佐野さんに確認依頼済み。資金繰りバランス見ること。', ts:'5/28'}
+  ]},
+  {id:208, assignee:'れんた', type:'waiting',   title:'海田くん 相馬邸について確認', done:false, comments:[
+    {author:'れんた', text:'海田くんに連絡済み。返信待ち。', ts:'6/20'}
+  ]},
+  {id:209, assignee:'れんた', type:'waiting',   title:'海田くん 案件の入出金について詳しく確認', done:false, comments:[]},
+  {id:210, assignee:'れんた', type:'waiting',   title:'アットイット食事会（6/24来社）商談報告→たつやんへ依頼・MTOへOKリアクション確認', done:false, comments:[
+    {author:'MTO',   text:'食事会後の報告をたつやんに依頼してほしい', ts:'6/24'},
+    {author:'れんた', text:'依頼しました！返信待ちです', ts:'6/25'}
+  ]},
+  {id:211, assignee:'れんた', type:'inbox',     title:'今後の領収書の扱いを決める', done:false, comments:[]},
+]
+
+let CASES=[
+  {name:'スペース24／TP古川駅前第8 造成工事',             status:'先方確認待ち',assignee:'津田',               days:21, alert:'MTO', announce:'21日超え未返信。MTO確認お願いします', slackUrl:'#'},
+  {name:'スペース24／TP安積永盛駅前第1 造成工事',         status:'先方確認待ち',assignee:'津田',               days:21, alert:'MTO', slackUrl:'#'},
+  {name:'渋谷／OC練馬大泉町コンテナ工事',                 status:'先方確認待ち',assignee:'海田',               days:21, announce:'海田くんに至急フォロー依頼してください', slackUrl:'#'},
+  {name:'渡辺住研／ハローコンテナ久喜蓮台寺町',           status:'先方確認待ち',assignee:'海田',               days:21, slackUrl:'#'},
+  {name:'荏心／伊奈町カーポート設置工事',                 status:'先方確認待ち',assignee:'津田',               days:21, slackUrl:'#'},
+  {name:'コバヤシ／在家外構工事',                         status:'先方確認待ち',assignee:'津田・海田',         days:16, slackUrl:'#'},
+  {name:'コバヤシ／豊島様邸',                             status:'先方確認待ち',assignee:'津田・海田',         days:16, slackUrl:'#'},
+  {name:'バイクパーク／（仮）BP川口市安行北谷',           status:'先方確認待ち',assignee:'津田・松尾・海田',   days:15, alert:'MTO', slackUrl:'#'},
+  {name:'渋谷／OC調布東店',                               status:'先方確認待ち',assignee:'津田',               days:14, slackUrl:'#'},
+  {name:'アースカー／（仮）大久保2-26-9駐車場',           status:'先方確認待ち',assignee:'津田・松尾',         days:11, alert:'MTO', slackUrl:'#'},
+  {name:'渡辺住研／コンテナ鉄骨屋根製作工事',             status:'先方確認待ち',assignee:'たつやん',           days:11, announce:'たつやんへ進捗確認の連絡をお願いします', slackUrl:'#'},
+  {name:'アット・イット／コンテナガレージハウス計画',     status:'先方確認待ち',assignee:'津田・松尾・海田',   days:10, alert:'MTO', slackUrl:'#'},
+  {name:'コバヤシ／川口市青木現場 竪装工事',              status:'先方確認待ち',assignee:'津田・松尾・海田',   days:8,  alert:'MTO', slackUrl:'#'},
+  {name:'山翠舎／小宮酒店看板設置 基礎工事',              status:'先方確認待ち',assignee:'津田・松尾・海田・たつやん', days:8, alert:'MTO', slackUrl:'#'},
+  {name:'コバヤシ／鈴木様邸 外構工事',                    status:'先方確認待ち',assignee:'津田・松尾・海田',   days:8,  alert:'MTO', slackUrl:'#'},
+  {name:'コバヤシ／霞山様邸 外構工事',                    status:'先方確認待ち',assignee:'津田・松尾・海田',   days:8,  alert:'MTO', slackUrl:'#'},
+  {name:'スペース24／TP陸前原ノ町駅前第1 造成工事',       status:'先方確認待ち',assignee:'津田・松尾',         days:7,  alert:'MTO', slackUrl:'#'},
+  {name:'コバヤシ／塚本様邸 リフォーム工事',              status:'先方確認待ち',assignee:'津田',               days:7,  slackUrl:'#'},
+  {name:'バイクパーク／バイクパーク平井土木工事',         status:'先方確認待ち',assignee:'津田',               days:7,  slackUrl:'#'},
+  {name:'コバヤシ／電動屋根パーゴラ設置',                 status:'先方確認待ち',assignee:'津田・松尾・海田',   days:4,  alert:'MTO', slackUrl:'#'},
+  {name:'スペース24／柏たなか駅前第5 補修工事',           status:'先方確認待ち',assignee:'津田・松尾',         days:4,  alert:'MTO', slackUrl:'#'},
+  {name:'ピースノート／バイカーズパラダイス加工場移設設置',status:'先方確認待ち',assignee:'津田・松尾・海田', days:4,  alert:'MTO', slackUrl:'#'},
+  {name:'柳沢様邸 解体・土木工事',                        status:'先方確認待ち',assignee:'津田・たつやん',     days:4,  slackUrl:'#'},
+  {name:'スペース24／TP岩切駅前第1 造成工事',             status:'先方確認待ち',assignee:'津田',               days:3,  slackUrl:'#'},
+  {name:'ピースノート／トイレコンテナ移設引き上げ',       status:'先方確認待ち',assignee:'津田・松尾・海田',   days:3,  alert:'MTO', slackUrl:'#'},
+  {name:'カネ美食品株式会社／松戸工場 補修工事',          status:'確認中',      assignee:'津田・松尾',         days:2,  alert:'MTO', slackUrl:'#'},
+  {name:'コバヤシ／森山様邸 外構工事',                    status:'確認中',      assignee:'津田・松尾・海田',   days:3,  alert:'MTO', slackUrl:'#'},
+  {name:'渋谷／アップルパーク江戸川区松江 コンテナ工事', status:'確認中',      assignee:'津田・松尾',         days:3,  alert:'MTO', slackUrl:'#'},
+  {name:'渋谷／OC富里市七栄 コンテナ工事',                status:'確認中',      assignee:'津田・松尾',         days:3,  alert:'MTO', slackUrl:'#'},
+  {name:'第一不動産／（仮）爆速BOX蕨区松富店 倉庫一式',  status:'確認中',      assignee:'津田・松尾・たつやん',days:4, alert:'MTO', slackUrl:'#'},
+  {name:'株式会社ナミキ／コンテナ移設設置',              status:'確認中',      assignee:'松尾・たつやん',     days:4,  alert:'MTO', slackUrl:'#'},
+  {name:'渋谷／OC調布東コンテナ工事',                     status:'確認中',      assignee:'津田・松尾',         days:4,  alert:'MTO', slackUrl:'#'},
+  {name:'柴山建設／高橋様邸 補修工事',                    status:'確認中',      assignee:'津田・松尾・海田',   days:4,  alert:'MTO', slackUrl:'#'},
+  {name:'渋谷／OC本木北町店 コンテナ工事',                status:'確認中',      assignee:'海田',               days:21, announce:'21日経過。海田くんに至急確認してください', slackUrl:'#'},
+  {name:'スペース24／TP六実駅前第4 造成工事',             status:'受注',        assignee:'松尾',               days:10, alert:'MTO', announce:'🎉 受注！次のステップをMTOが確認してください', slackUrl:'#'},
+  {name:'コバヤシ／藤野様邸 外構工事',                    status:'受注',        assignee:'松尾',               days:8,  alert:'MTO', slackUrl:'#'},
+  {name:'渋谷／OC岩槻コンテナ工事',                       status:'受注',        assignee:'海田',               days:5,  slackUrl:'#'},
+  {name:'渋谷／OC墨田区立花 コンテナ工事',                status:'受注',        assignee:'海田',               days:3,  slackUrl:'#'},
+  {name:'渡辺住研／ハローコンテナ熊谷久保島店',           status:'受注',        assignee:'海田',               days:12, slackUrl:'#'},
+  {name:'スペース24／TP館林造成工事',                      status:'受注',        assignee:'津田',               days:20, slackUrl:'#'},
+  {name:'バイクパーク／（仮）BP杉並区上井草',             status:'失注',        assignee:'たつやん',           days:15, slackUrl:'#'},
+  {name:'ヒラガコーポレーション／焼肉屋店竪内装工事',     status:'失注',        assignee:'海田',               days:22, slackUrl:'#'},
+  {name:'渡辺住研／（仮称）ハローコンテナ川口店',         status:'失注',        assignee:'—',                  days:30, slackUrl:'#'},
+  {name:'解体後、新設フェンス',                            status:'完了',        assignee:'—',                  days:10, slackUrl:'#'},
+]
+let lastUpdated = new Date()
+
+const S_CFG={
+  '先方確認待ち':{c:'#6d28d9',bg:'#ede9fe'},'確認中':{c:'#92400e',bg:'#fef3c7'},
+  '受注':{c:'#065f46',bg:'#d1fae5'},'進行中':{c:'#1e40af',bg:'#dbeafe'},
+  '完了':{c:'#6b7280',bg:'#f3f4f6'},'失注':{c:'#991b1b',bg:'#fee2e2'},
+  '未着手':{c:'#9b9b97',bg:'#f0f0ee'},'見積中':{c:'#1e40af',bg:'#dbeafe'},
+}
+
+// ===== State =====
+let nextId = 300
+let currentTab = 'tasks'
+let inboxPerson = 'MTO'
+let setupDone       = {MTO:false, れんた:false}
+let editingRoutines = {MTO:false, れんた:false}
+let selSnapshot     = {MTO:null,  れんた:null}
+let openId = null
+let addingType = null
+let deleteTargetId = null
+let modalCommentPerson = 'MTO'
+
+// ===== 通知バッジ =====
+function updateNotifBadge() {
+  const cnt=CASES.filter(c=>c.alert&&!['完了','失注'].includes(c.status)).length
+  const badge=document.getElementById('tab-badge')
+  const bell=document.getElementById('notif-bell')
+  const nbadge=document.getElementById('notif-badge')
+  if(cnt>0){
+    badge.textContent=cnt; badge.style.display='flex'
+    bell.classList.remove('hidden'); nbadge.textContent=cnt
+  } else {
+    badge.style.display='none'; bell.classList.add('hidden')
+  }
+}
+
+// ===== ぶち込みバー =====
+function updateInboxToggle() {
+  ;['MTO','れんた'].forEach(p=>{
+    const btn=document.getElementById(`ib-${p}`)
+    if(p===inboxPerson){
+      btn.style.background='#fff'; btn.style.color='#1a1a1a'
+    } else {
+      btn.style.background='transparent'; btn.style.color='rgba(255,255,255,.5)'
+    }
+  })
+}
+
+// ===== Toast =====
+function showToast(msg, type='success') {
+  const el=document.createElement('div')
+  const bg=type==='error'?'#ef4444':type==='info'?'#3b82f6':'#1a1a1a'
+  el.className='toast-anim'
+  el.style.cssText=`background:${bg};color:#fff;font-size:13px;padding:10px 16px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.2);pointer-events:none;white-space:nowrap;font-family:inherit;`
+  el.textContent=msg
+  document.getElementById('toast-container').appendChild(el)
+  setTimeout(()=>el.remove(), 2600)
+}
+
+// ===== Tab =====
+function setTab(t) {
+  currentTab=t
+  const activeStyle='padding:6px 16px;border-radius:7px;font-size:13px;font-weight:500;background:#fff;color:#1a1a1a;box-shadow:0 1px 3px rgba(0,0,0,.1);border:none;cursor:pointer;position:relative;transition:all .1s;'
+  const inactStyle='padding:6px 16px;border-radius:7px;font-size:13px;font-weight:500;background:transparent;color:#888;border:none;cursor:pointer;position:relative;transition:all .1s;'
+  document.getElementById('tab-tasks').style.cssText=t==='tasks'?activeStyle:inactStyle
+  document.getElementById('tab-cases').style.cssText=t==='cases'?activeStyle:inactStyle
+  render()
+}
+
+// ===== ルーティーン =====
+function applicable(r) {
+  if(r.schedule==='daily')       return true
+  if(r.schedule==='weekday')     return IS_WEEKDAY
+  if(r.schedule==='monday')      return IS_MONDAY
+  if(r.schedule==='month_start') return IS_MONTH_START
+  if(r.schedule==='month_end')   return IS_MONTH_END
+  if(r.schedule==='specific')    return (r.specific_days||'').split(',').map(s=>+s.trim()).includes(DATE)
+  return false
+}
+function startEditRoutines(p) {
+  selSnapshot[p]=routines.filter(r=>r.assignee===p).map(r=>({id:r.id,sel:r.sel}))
+  editingRoutines[p]=true; render()
+}
+function cancelEditRoutines(p) {
+  if(selSnapshot[p]) selSnapshot[p].forEach(s=>{ const r=routines.find(x=>x.id===s.id); if(r) r.sel=s.sel })
+  editingRoutines[p]=false; render()
+}
+function confirmRoutines(p) {
+  const cnt=routines.filter(r=>r.assignee===p&&r.sel).length
+  if(cnt===0){showToast('少なくとも1件選択してください','error'); return}
+  setupDone[p]=true; editingRoutines[p]=false; render(); saveState()
+  showToast(`✓ ${cnt}件のルーティーンを追加しました`)
+}
+function skipRoutines(p) { setupDone[p]=true; editingRoutines[p]=false; render(); saveState() }
+function toggleSel(id)   { const r=routines.find(x=>x.id===id); if(r){r.sel=!r.sel;render()} }
+function selectAll(p)    { routines.filter(r=>r.assignee===p).forEach(r=>r.sel=true);  render() }
+function selectNone(p)   { routines.filter(r=>r.assignee===p).forEach(r=>r.sel=false); render() }
+function selectToday(p)  { routines.filter(r=>r.assignee===p).forEach(r=>r.sel=applicable(r)); render() }
+
+// ===== タスク操作 =====
+function toggleDone(id) {
+  const t=tasks.find(x=>x.id===id); if(!t) return
+  t.done=!t.done; render(); saveState()
+  showToast(t.done?`✓ 完了：${t.title.slice(0,20)}…`:'↩ 未完了に戻しました')
+}
+function toggleRDone(id) {
+  const r=routines.find(x=>x.id===id); if(!r) return
+  r.done=!r.done; render(); saveState()
+  if(r.done) showToast(`✓ 完了：${r.title.slice(0,20)}…`)
+}
+function changeType(id, type) {
+  const t=tasks.find(x=>x.id===id)
+  if(t){t.type=type; render(); saveState(); showToast(`→ ${TYPE_CFG[type].label}に移動しました`)}
+}
+function askDelete(id) {
+  const t=tasks.find(x=>x.id===id); if(!t) return
+  deleteTargetId=id
+  document.getElementById('delete-target-name').textContent=t.title
+  const d=document.getElementById('delete-dialog'); d.style.display='flex'
+}
+function confirmDelete() {
+  if(!deleteTargetId) return
+  const t=tasks.find(x=>x.id===deleteTargetId)
+  tasks=tasks.filter(x=>x.id!==deleteTargetId); deleteTargetId=null
+  document.getElementById('delete-dialog').style.display='none'
+  render(); saveState(); showToast(`🗑 削除しました：${t?.title.slice(0,20)||''}…`)
+}
+function cancelDelete() {
+  deleteTargetId=null; document.getElementById('delete-dialog').style.display='none'
+}
+function quickAdd() {
+  const inp=document.getElementById('inbox-input'), title=inp.value.trim(); if(!title) return
+  tasks.push({id:nextId++, assignee:inboxPerson, type:'inbox', title, done:false, comments:[]})
+  inp.value=''; render(); saveState()
+  showToast(`📦 ${inboxPerson}のぶち込み部屋に追加しました`)
+  setTimeout(()=>document.getElementById(`sec-${inboxPerson}-inbox`)?.scrollIntoView({behavior:'smooth',block:'nearest'}),50)
+}
+function saveNewTask(person, type) {
+  const key=`${person}-${type}`, inp=document.getElementById(`inp-${key}`)
+  const title=inp?.value.trim(); if(!title) return
+  tasks.push({id:nextId++, assignee:person, type, title, done:false, comments:[]})
+  addingType=null; render(); saveState(); showToast('✓ タスクを追加しました')
+}
+
+// ===== モーダル =====
+function openTask(id) {
+  openId=id
+  const t=tasks.find(x=>x.id===id)||routines.find(x=>x.id===id); if(!t) return
+  modalCommentPerson=t.assignee
+  const typeCfg=TYPE_CFG[t.type], schedCfg=SCHED_CFG[t.schedule]
+  document.getElementById('modal-title-view').textContent=t.title
+  document.getElementById('modal-title-edit').value=t.title
+  document.getElementById('modal-title-edit').style.display='none'
+  document.getElementById('modal-title-view').style.display='block'
+  document.getElementById('modal-meta').textContent=`担当: ${t.assignee}`
+  document.getElementById('modal-badge').innerHTML=schedCfg
+    ?`<span style="padding:2px 8px;border-radius:4px;font-size:11px;" class="${schedCfg.cls}">${schedCfg.icon} ${schedCfg.label} ルーティーン</span>`
+    :typeCfg?`<span style="font-size:11px;font-weight:600;color:${typeCfg.color};">● ${typeCfg.label}</span>`:''
+  if(t.type&&!t.schedule){
+    document.getElementById('modal-type-row').innerHTML=Object.entries(TYPE_CFG).map(([k,v])=>
+      `<button onclick="changeType(${t.id},'${k}')"
+        style="padding:4px 10px;font-size:11px;border-radius:20px;border:1.5px solid ${t.type===k?v.dot:'#e8e7e1'};background:${t.type===k?v.bg:'transparent'};color:${t.type===k?v.color:'#aaa'};cursor:pointer;font-weight:${t.type===k?600:400};font-family:inherit;">${v.label}</button>`
+    ).join('')
+  } else document.getElementById('modal-type-row').innerHTML=''
+  renderThread(t)
+  document.getElementById('modal').style.display='flex'
+  setTimeout(()=>document.getElementById('modal-input').focus(),30)
+}
+function startEditTitle() {
+  const view=document.getElementById('modal-title-view'), edit=document.getElementById('modal-title-edit')
+  edit.value=view.textContent; view.style.display='none'; edit.style.display='block'; edit.focus(); edit.select()
+}
+function saveEditTitle() {
+  const edit=document.getElementById('modal-title-edit'), newTitle=edit.value.trim()
+  if(newTitle&&openId){
+    const t=tasks.find(x=>x.id===openId)||routines.find(x=>x.id===openId)
+    if(t){t.title=newTitle; render()}
+    document.getElementById('modal-title-view').textContent=newTitle
+    showToast('✓ タスク名を更新しました')
+  }
+  edit.style.display='none'; document.getElementById('modal-title-view').style.display='block'
+}
+function cancelEditTitle() {
+  document.getElementById('modal-title-edit').style.display='none'
+  document.getElementById('modal-title-view').style.display='block'
+}
+function renderThread(t) {
+  const c=t.comments||[]
+  const el=document.getElementById('modal-thread')
+  el.innerHTML=c.length===0
+    ?'<p style="font-size:12px;color:#ccc;text-align:center;padding:24px 0;">コメントはまだありません</p>'
+    :c.map(cm=>`
+      <div style="display:flex;gap:10px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#f0efe9;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#888;flex-shrink:0;">${cm.author[0]}</div>
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <span style="font-size:12px;font-weight:600;color:#333;">${cm.author}</span>
+            <span style="font-size:11px;color:#ccc;">${cm.ts}</span>
+          </div>
+          <div style="font-size:13px;color:#444;margin-top:2px;line-height:1.5;">${cm.text}</div>
+        </div>
+      </div>`).join('')
+}
+function addComment() {
+  const inp=document.getElementById('modal-input'), text=inp.value.trim()
+  if(!text||!openId) return
+  const t=tasks.find(x=>x.id===openId)||routines.find(x=>x.id===openId); if(!t) return
+  ;(t.comments=t.comments||[]).push({author:modalCommentPerson,text,ts:'今'})
+  inp.value=''; renderThread(t); saveState()
+}
+function closeModal() { document.getElementById('modal').style.display='none'; openId=null }
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){
+    if(document.getElementById('delete-dialog').style.display==='flex'){ cancelDelete(); return }
+    if(document.getElementById('modal').style.display==='flex'){ closeModal(); return }
+  }
+})
+
+// ===== ルーティーン選択UI =====
+function routineSetupHTML(person) {
+  const my=routines.filter(r=>r.assignee===person)
+  const groups={}; my.forEach(r=>{ (groups[r.schedule]=groups[r.schedule]||[]).push(r) })
+  const selCnt=my.filter(r=>r.sel).length
+  const todayCnt=my.filter(r=>applicable(r)).length
+  const isEditing=editingRoutines[person]
+
+  const schedOrder=['daily','weekday','monday','month_start','month_end','specific']
+  const schedColors={
+    daily:'#059669',weekday:'#0d9488',monday:'#2563eb',
+    month_start:'#d97706',month_end:'#ea580c',specific:'#db2777'
+  }
+
+  return `
+    <div style="background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid #e8e7e1;" class="fade-in">
+      <div style="padding:14px 16px;border-bottom:1px solid #f0efe9;display:flex;align-items:center;gap:10px;">
+        <div style="font-size:20px;">🌅</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a1a1a;">おはようございます</div>
+          <div style="font-size:11px;color:#aaa;margin-top:1px;">今日のルーティーンを選択（今日の対象: ${todayCnt}件）</div>
+        </div>
+      </div>
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:14px;max-height:280px;overflow-y:auto;">
+        ${schedOrder.filter(s=>groups[s]).map(sched=>{
+          const rs=groups[sched], cfg=SCHED_CFG[sched], isApp=applicable(rs[0])
+          const dotColor=schedColors[sched]||'#888'
+          return `<div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:${dotColor};display:inline-block;flex-shrink:0;${!isApp?'opacity:.35':''}"></span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:${isApp?dotColor:'#bbb'};">${cfg.label}</span>
+              ${!isApp?`<span style="font-size:10px;color:#ccc;">— 今日は対象外</span>`:''}
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              ${rs.map(r=>`
+                <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1.5px solid ${r.sel?dotColor:'#f0efe9'};background:${r.sel?'#f8f8f7':'transparent'};cursor:pointer;transition:all .1s;opacity:${!isApp?'.45':'1'};">
+                  <input type="checkbox" ${r.sel?'checked':''} style="width:15px;height:15px;accent-color:${dotColor};flex-shrink:0;cursor:pointer;"
+                    onchange="toggleSel(${r.id})">
+                  <span style="font-size:12px;color:${r.sel?'#1a1a1a':'#555'};font-weight:${r.sel?500:400};flex:1;line-height:1.4;">${r.title}</span>
+                  ${isApp?`<span style="font-size:10px;font-weight:600;color:${dotColor};flex-shrink:0;">今日</span>`:''}
+                </label>`).join('')}
+            </div>
+          </div>`
+        }).join('')}
+      </div>
+      <div style="padding:10px 14px;background:#fafaf9;border-top:1px solid #f0efe9;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+        <span style="font-size:11px;color:#aaa;">${selCnt}件 選択中</span>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+          <button onclick="selectToday('${person}')" style="padding:5px 10px;font-size:11px;color:#666;background:#fff;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">今日の対象</button>
+          <button onclick="selectAll('${person}')"   style="padding:5px 10px;font-size:11px;color:#666;background:#fff;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">全選択</button>
+          ${isEditing
+            ?`<button onclick="cancelEditRoutines('${person}')" style="padding:5px 10px;font-size:11px;color:#555;background:#fff;border:1px solid #d0cfc9;border-radius:7px;cursor:pointer;font-weight:500;font-family:inherit;">← 元に戻す</button>`
+            :`<button onclick="skipRoutines('${person}')" style="padding:5px 10px;font-size:11px;color:#999;background:transparent;border:1px solid #e8e7e1;border-radius:7px;cursor:pointer;font-family:inherit;">スキップ</button>`}
+          <div style="width:1px;height:20px;background:#e8e7e1;"></div>
+          <button onclick="confirmRoutines('${person}')"
+            style="padding:6px 14px;font-size:12px;font-weight:600;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:opacity .1s;
+              ${selCnt>0?'background:#1a1a1a;color:#fff;':'background:#e8e7e1;color:#bbb;cursor:not-allowed;'}">
+            追加 →
+          </button>
+        </div>
+      </div>
+    </div>`
+}
+
+// ===== タスクカード =====
+function taskCard(t, isRoutine=false) {
+  const cnt=(t.comments||[]).length
+  const typeColor=TYPE_CFG[t.type]?.dot||'#ddd'
+  return `
+    <div class="task-card fade-in" style="background:#fff;border:1px solid #ebebeb;border-left:3px solid ${t.done?'#e5e5e5':typeColor};border-radius:10px;padding:10px 12px;${t.done?'opacity:.42;':''}">
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <button class="check-btn" onclick="${isRoutine?`toggleRDone(${t.id})`:`toggleDone(${t.id})`}"
+          style="margin-top:1px;width:18px;height:18px;border-radius:5px;border:1.5px solid ${t.done?'#22c55e':'#d4d4d0'};background:${t.done?'#22c55e':'transparent'};flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+          ${t.done?'<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}
+        </button>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:13px;${t.done?'text-decoration:line-through;color:#bbb;':'color:#1a1a1a;cursor:pointer;'}line-height:1.45;"
+            onclick="${!t.done?`openTask(${t.id})`:''}"
+            ${!t.done?`onmouseenter="this.style.color='#4f8ef7'" onmouseleave="this.style.color='#1a1a1a'"`:''}>${t.title}</div>
+          <div style="margin-top:5px;">
+            ${cnt>0
+              ?`<button onclick="openTask(${t.id})" style="display:inline-flex;align-items:center;gap:3px;font-size:11px;color:#aaa;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;"
+                  onmouseenter="this.style.color='#4f8ef7'" onmouseleave="this.style.color='#aaa'">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  ${cnt}
+                </button>`
+              :`<button onclick="openTask(${t.id})" style="font-size:11px;color:#ddd;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;opacity:0;" class="comment-hint"
+                  onmouseenter="this.style.color='#4f8ef7'" onmouseleave="this.style.color='#ddd'">+ コメント</button>`}
+          </div>
+        </div>
+        ${!isRoutine?`
+        <div class="action-btns" style="display:flex;align-items:center;gap:2px;opacity:0;transition:opacity .1s;flex-shrink:0;">
+          <select style="border:none;background:transparent;font-size:11px;color:#bbb;cursor:pointer;max-width:66px;outline:none;"
+            onchange="changeType(${t.id},this.value)">
+            ${Object.entries(TYPE_CFG).map(([k,v])=>`<option value="${k}" ${t.type===k?'selected':''}>${v.label}</option>`).join('')}
+          </select>
+          <button onclick="askDelete(${t.id})"
+            style="width:24px;height:24px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:6px;color:#ccc;font-size:13px;"
+            onmouseenter="this.style.background='#fef2f2';this.style.color='#ef4444'" onmouseleave="this.style.background='transparent';this.style.color='#ccc'">×</button>
+        </div>`:''}
+      </div>
+    </div>`
+}
+
+// ===== タスクセクション =====
+function section(person, type) {
+  const cfg=TYPE_CFG[type]
+  const myR=type==='today'?routines.filter(r=>r.assignee===person&&r.sel):[]
+  const myT=tasks.filter(t=>t.assignee===person&&t.type===type)
+  const all=[...myR.map(r=>({...r,_r:true})),...myT]
+  const active=all.filter(x=>!x.done), done=all.filter(x=>x.done)
+  const key=`${person}-${type}`, isAdding=addingType===key
+  const emptyMsg={
+    today:'ルーティーン選択または「+ 追加」から',
+    inprogress:'進行中のタスクはありません',
+    waiting:'確認待ちのタスクはありません',
+    inbox:'下のバーからいつでも追加できます',
+  }
+  return `
+    <div id="sec-${key}" style="margin-bottom:14px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;padding:0 2px;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:${cfg.dot};display:inline-block;"></span>
+          <span style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#888;">${cfg.label}</span>
+          <span style="font-size:11px;color:#bbb;">${active.length}</span>
+          ${done.length?`<span style="font-size:11px;color:#86efac;">✓ ${done.length}</span>`:''}
+        </div>
+        <button onclick="addingType='${key}';render()"
+          style="font-size:11px;color:#bbb;background:none;border:none;cursor:pointer;padding:3px 6px;border-radius:5px;font-family:inherit;"
+          onmouseenter="this.style.color='#4f8ef7';this.style.background='#f0f5ff'" onmouseleave="this.style.color='#bbb';this.style.background='none'">+ 追加</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        ${active.map(t=>taskCard(t,!!t._r)).join('')}
+        ${isAdding?`
+          <div style="background:#fff;border:1.5px solid #4f8ef7;border-radius:10px;padding:10px;" class="fade-in">
+            <div style="display:flex;gap:6px;">
+              <input id="inp-${key}" autofocus placeholder="タスク名 (Enter で保存 / Esc でキャンセル)"
+                style="flex:1;border:none;outline:none;font-size:13px;color:#1a1a1a;font-family:inherit;"
+                onkeydown="if(event.key==='Enter')saveNewTask('${person}','${type}');if(event.key==='Escape'){addingType=null;render()}">
+              <button onclick="saveNewTask('${person}','${type}')" style="padding:5px 12px;background:#1a1a1a;color:#fff;border:none;border-radius:7px;font-size:12px;cursor:pointer;font-family:inherit;">保存</button>
+              <button onclick="addingType=null;render()" style="padding:5px 8px;background:none;border:none;color:#bbb;font-size:16px;cursor:pointer;">×</button>
+            </div>
+          </div>`:''}
+        ${active.length===0&&!isAdding?`
+          <div style="border:1.5px dashed #e8e7e1;border-radius:10px;padding:12px 16px;">
+            <p style="font-size:11px;color:#ccc;text-align:center;margin:0;">${emptyMsg[type]}</p>
+          </div>`:''}
+        ${done.length?`
+          <details style="margin-top:2px;">
+            <summary style="font-size:11px;color:#ccc;cursor:pointer;padding:3px 4px;list-style:none;user-select:none;"
+              onmouseenter="this.style.color='#888'" onmouseleave="this.style.color='#ccc'">
+              ▸ 完了済み（${done.length}件）
+            </summary>
+            <div style="margin-top:5px;display:flex;flex-direction:column;gap:5px;">${done.map(t=>taskCard(t,!!t._r)).join('')}</div>
+          </details>`:''}
+      </div>
+    </div>`
+}
+
+// ===== 担当者パネル =====
+function personPanel(person) {
+  const ACCENT={MTO:'#4f8ef7', れんた:'#10b981'}
+  const done=setupDone[person], editing=editingRoutines[person]
+  const activeCnt=tasks.filter(t=>t.assignee===person&&!t.done).length
+  const rSel=routines.filter(r=>r.assignee===person&&r.sel).length
+  const accent=ACCENT[person]
+
+  return `
+    <div style="background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e8e7e1;min-width:0;box-shadow:0 2px 16px rgba(0,0,0,.05);border-top:3px solid ${accent};">
+      <!-- パネルヘッダー -->
+      <div style="padding:12px 14px;border-bottom:1px solid #f0efe9;display:flex;align-items:center;justify-content:space-between;background:#fafaf9;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:30px;height:30px;border-radius:9px;background:${accent};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;">${person[0]}</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#1a1a1a;">${person}</div>
+            <div style="font-size:11px;color:#aaa;margin-top:1px;">
+              ${done
+                ?(activeCnt?`未完了 ${activeCnt}件`:'すべて完了 🎉')+(rSel?` · ルーティーン ${rSel}件`:'')
+                :'ルーティーン未設定'}
+            </div>
+          </div>
+        </div>
+        ${done&&!editing?`
+          <button onclick="startEditRoutines('${person}')"
+            style="font-size:11px;color:#aaa;background:#fff;border:1px solid #e8e7e1;border-radius:7px;padding:4px 10px;cursor:pointer;font-family:inherit;white-space:nowrap;"
+            onmouseenter="this.style.borderColor='${accent}';this.style.color='${accent}'" onmouseleave="this.style.borderColor='#e8e7e1';this.style.color='#aaa'">
+            ルーティーン再設定
+          </button>`:''}
+      </div>
+      <!-- コンテンツ -->
+      <div style="padding:14px;">
+        ${(!done||editing)?routineSetupHTML(person):`${['today','inprogress','waiting','inbox'].map(t=>section(person,t)).join('')}`}
+      </div>
+    </div>`
+}
+
+// ===== 案件タブ自動更新 =====
+function simulateSlackRefresh() {
+  lastUpdated=new Date()
+  showToast('🔄 Slack から案件情報を更新しました','info')
+  if(currentTab==='cases') render()
+  updateNotifBadge()
+}
+setInterval(simulateSlackRefresh, 5*60*1000)
+function fmtTime(d) { return d.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}) }
+
+// ===== 案件レンダリング =====
+function renderCases() {
+  const alerts=CASES.filter(c=>c.alert&&!['完了','失注'].includes(c.status))
+  const announces=CASES.filter(c=>c.announce&&!['完了','失注'].includes(c.status))
+  const counts={}; CASES.forEach(c=>{counts[c.status]=(counts[c.status]||0)+1})
+
+  const rows=CASES.map(c=>{
+    const sc=S_CFG[c.status]||{c:'#666',bg:'#eee'}
+    const stale=c.days>=21&&!['完了','失注'].includes(c.status)?'🚨':c.days>=14&&!['完了','失注'].includes(c.status)?'⚠️':''
+    const rb=c.days>=21&&!['完了','失注'].includes(c.status)?'background:#fff8f8':c.days>=14&&!['完了','失注'].includes(c.status)?'background:#fffbeb':''
+    const alertDot=c.alert?`<span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:#4f8ef7;margin-right:4px;vertical-align:middle;flex-shrink:0;"></span>`:''
+    const label=c.status==='受注'?'受注 🎉':c.status==='完了'?'完了 ✓':c.status
+    return `<tr style="border-bottom:1px solid #f5f5f3;${c.days>=21&&!['完了','失注'].includes(c.status)?'background:#fffafa':''}">
+      <td style="padding:8px 6px 8px 12px;font-size:13px;width:24px;">${stale}</td>
+      <td style="padding:8px 8px;">
+        <div style="display:flex;align-items:flex-start;gap:5px;">
+          ${alertDot}
+          <a href="${c.slackUrl}" title="Slackで開く" style="color:#93c5fd;font-size:12px;flex-shrink:0;margin-top:1px;text-decoration:none;"
+            onclick="if('${c.slackUrl}'==='#')event.preventDefault()">↗</a>
+          <span style="font-size:13px;color:#1a1a1a;line-height:1.4;">${c.name}</span>
+        </div>
+      </td>
+      <td style="padding:8px;font-size:11px;color:#aaa;white-space:nowrap;" class="hidden sm:table-cell">${c.assignee}</td>
+      <td style="padding:8px;"><span style="padding:2px 8px;border-radius:5px;font-size:11px;font-weight:500;white-space:nowrap;color:${sc.c};background:${sc.bg};">${label}</span></td>
+      <td style="padding:8px 12px 8px 0;font-size:11px;color:#bbb;white-space:nowrap;text-align:right;">${c.days===0?'今日':`${c.days}日前`}</td>
+    </tr>`
+  }).join('')
+
+  const summary=Object.entries(counts).map(([s,n])=>{
+    const sc=S_CFG[s]||{c:'#666',bg:'#eee'}; const l=s==='受注'?'受注 🎉':s==='完了'?'完了 ✓':s
+    return `<span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;color:${sc.c};background:${sc.bg};">${l} ${n}</span>`
+  }).join('')
+
+  return `
+    ${alerts.length>0?`
+      <div style="background:#fff;border:1px solid #e8e7e1;border-radius:12px;overflow:hidden;margin-bottom:12px;">
+        <div style="padding:10px 16px;border-bottom:1px solid #f0efe9;display:flex;align-items:center;gap:8px;">
+          <span class="pulse-anim" style="color:#ef4444;font-size:14px;">●</span>
+          <span style="font-size:12px;font-weight:600;color:#1a1a1a;">あなたへの通知</span>
+          <span style="font-size:11px;color:#aaa;">${alerts.length}件</span>
+        </div>
+        <div>
+          ${alerts.slice(0,5).map(c=>`
+            <div style="padding:10px 16px;border-bottom:1px solid #f5f5f3;display:flex;align-items:flex-start;gap:10px;">
+              <span style="font-size:13px;flex-shrink:0;margin-top:1px;">${c.days>=21?'🚨':c.days>=14?'⚠️':'📌'}</span>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:500;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.name}</div>
+                <div style="font-size:11px;color:#aaa;margin-top:2px;">${c.assignee} · ${c.status} · ${c.days}日前</div>
+              </div>
+              <a href="${c.slackUrl}" style="font-size:11px;color:#4f8ef7;border:1px solid #dbeafe;padding:4px 10px;border-radius:7px;white-space:nowrap;background:#fff;text-decoration:none;"
+                onclick="if('${c.slackUrl}'==='#')event.preventDefault()">Slackで開く</a>
+            </div>`).join('')}
+          ${alerts.length>5?`<div style="padding:8px;text-align:center;font-size:11px;color:#aaa;">他 ${alerts.length-5}件</div>`:''}
+        </div>
+      </div>`:''}
+
+    ${announces.length>0?`
+      <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;overflow:hidden;margin-bottom:12px;">
+        <div style="padding:10px 16px;border-bottom:1px solid #fef3c7;display:flex;align-items:center;gap:6px;">
+          <span style="font-size:13px;">📢</span>
+          <span style="font-size:12px;font-weight:600;color:#92400e;">要アナウンス</span>
+          <span style="font-size:11px;color:#b45309;">${announces.length}件</span>
+        </div>
+        ${announces.map(c=>`
+          <div style="padding:8px 16px;border-bottom:1px solid #fef3c7;">
+            <div style="font-size:12px;font-weight:500;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.name}</div>
+            <div style="font-size:11px;color:#b45309;margin-top:2px;">${c.announce}</div>
+          </div>`).join('')}
+      </div>`:''}
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#bbb;">
+        <span>🔄 Slack自動連携中</span>
+        <span>最終更新: ${fmtTime(lastUpdated)}</span>
+      </div>
+      <button onclick="simulateSlackRefresh()"
+        style="font-size:11px;color:#4f8ef7;background:#fff;border:1px solid #dbeafe;border-radius:7px;padding:4px 10px;cursor:pointer;font-family:inherit;">
+        ↺ 今すぐ更新
+      </button>
+    </div>
+
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">${summary}</div>
+
+    <div style="background:#fff;border:1px solid #e8e7e1;border-radius:12px;overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="background:#fafaf9;border-bottom:1px solid #f0efe9;">
+            <th style="width:24px;"></th>
+            <th style="text-align:left;padding:8px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#bbb;">案件名</th>
+            <th style="text-align:left;padding:8px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#bbb;width:110px;" class="hidden sm:table-cell">担当</th>
+            <th style="text-align:left;padding:8px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#bbb;width:120px;">ステータス</th>
+            <th style="text-align:right;padding:8px 12px 8px 0;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#bbb;width:60px;">更新</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:#ccc;text-align:center;margin-top:10px;">↗ アイコンをタップするとSlackのスレッドを開きます（本番では自動設定）</p>`
+}
+
+// ===== メインレンダー =====
+function render() {
+  document.getElementById('today-label').textContent=`${D.getMonth()+1}月${D.getDate()}日（${DAYS_JP[DOW]}）`
+  if(currentTab==='cases'){ document.getElementById('content').innerHTML=renderCases(); return }
+  document.getElementById('content').innerHTML=`
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+      ${personPanel('MTO')}
+      ${personPanel('れんた')}
+    </div>`
+  // task-cardホバー用にCSS注入
+  document.querySelectorAll('.task-card').forEach(card=>{
+    card.addEventListener('mouseenter',()=>{ card.querySelector('.action-btns')&&(card.querySelector('.action-btns').style.opacity='1'); card.querySelector('.comment-hint')&&(card.querySelector('.comment-hint').style.opacity='1') })
+    card.addEventListener('mouseleave',()=>{ card.querySelector('.action-btns')&&(card.querySelector('.action-btns').style.opacity='0'); card.querySelector('.comment-hint')&&(card.querySelector('.comment-hint').style.opacity='0') })
+  })
+  const af=document.querySelector('[autofocus]')
+  if(af) setTimeout(()=>af.focus(),30)
+}
+
+// ===== タブ間リアルタイム同期 (localStorage) =====
+const LS_KEY = 'tmto_state'
+const LS_TS  = 'tmto_ts'
+
+function saveState() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({tasks, routines, setupDone}))
+    localStorage.setItem(LS_TS, Date.now().toString())
+  } catch(e) {}
+}
+function loadState() {
+  try {
+    const s = localStorage.getItem(LS_KEY)
+    if(!s) return
+    const d = JSON.parse(s)
+    if(d.tasks)    tasks    = d.tasks
+    if(d.routines) routines = d.routines
+    if(d.setupDone) setupDone = d.setupDone
+  } catch(e) {}
+}
+// 別タブの変更を即時受信
+window.addEventListener('storage', e => {
+  if(e.key === LS_TS) {
+    loadState(); render()
+    showToast('🔄 他のウィンドウから更新されました', 'info')
+  }
+})
+// 起動時に既存データを読み込む
+loadState()
+
+updateNotifBadge()
+render()
+</script>
+
+
+</body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>
